@@ -31,7 +31,7 @@ It works on a computer, phone or tablet. On a phone, turn it sideways so the GO 
 7. Spooky Swamp (a current pulls you back)
 8. Cosmic River (galaxy)
 9. Digital Rain (Matrix-style)
-10. **Emerald City**, a Seattle bonus round: Mount Rainier is the tallest peak, with the lower snowy Olympic and North Cascade mountains behind it, plus the Space Needle, a rainforest of evergreens, a lit-up Ferris wheel on the waterfront, bald eagles, seagulls and passenger jets in the sky, and rainy streets with glowing owl badges, a coffee-cup sign, a banana billboard and a smiling delivery-box sign. The obstacles are driftwood, ferries, salmon (they swim diagonally and turn red as they rise to the surface) and leaping orcas.
+10. **Emerald City**, a Seattle bonus round: Mount Rainier is the tallest peak, with the lower snowy Olympic and North Cascade mountains behind it, plus the Space Needle, a rainforest of evergreens, a lit-up Ferris wheel on the waterfront, bald eagles, seagulls and passenger jets in the sky, and a Seattle skyline with Columbia Center, glass high-rises, Lumen Field and Climate Pledge Arena, plus a glowing owl badge and a banana billboard. The obstacles are driftwood, ferries, salmon (they swim diagonally and turn red as they rise to the surface) and leaping orcas.
 
 ## The story
 

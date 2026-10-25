@@ -47,7 +47,7 @@ Each step below started as something Noah or his dad asked for.
 
 - Make the Seattle round look bigger: Mount Rainier is the tallest peak, with the Olympic and North Cascade mountains behind it.
 - Make the salmon swim on a diagonal, and fill the Seattle sky with bald eagles, seagulls and two passenger jets.
-- Add falling coffee cups and bananas worth bonus points, make them count as fish, then take them out again and add more signs in the skyline instead (a coffee cup, a delivery box and more owl badges).
+- Add falling coffee cups and bananas worth bonus points, make them count as fish, then take them out again. Add more to the skyline: Columbia Center, glass high-rises, Lumen Field and Climate Pledge Arena.
 - Fix missing sound on phones (iPhone silent switch and paused audio), and publish the game through GitHub so anyone can play from a link.
 
 ## Choices made along the way
