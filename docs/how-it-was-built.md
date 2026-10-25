@@ -46,6 +46,7 @@ Each step below started as something Noah or his dad asked for.
 - Fill out Seattle: a Ferris wheel on the waterfront, a banana billboard, a green-and-white owl badge, rain with falling coffee cups and bananas that give bonus points, and obstacles of driftwood, ferries, salmon (they turn red as they rise to the surface) and leaping orcas.
 
 - Make the Seattle round look bigger: Mount Rainier is the tallest peak, with the Olympic and North Cascade mountains behind it.
+- Make the salmon swim on a diagonal, and fill the Seattle sky with bald eagles, seagulls and two passenger jets.
 - Make coffee and bananas count as fish, so the bonus points show up in the fish counter.
 - Fix missing sound on phones (iPhone silent switch and paused audio), and publish the game through GitHub so anyone can play from a link.
 
