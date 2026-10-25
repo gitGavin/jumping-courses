@@ -554,7 +554,7 @@ function drawSkyLife(c,cam,t){
   var i,x,y,fl;
   for(i=0;i<2;i++){
     var dir=i?-1:1,sp=11+i*4,x2=mod(hash(i*7.7+3)*(W+500)+dir*t*sp-cam*0.01,W+500)-250;
-    drawJet(c,x2,104+i*44,1.25-i*0.2,dir,t);
+    drawJet(c,x2,52+i*34,1.2-i*0.2,dir,t);
   }
   for(i=0;i<5;i++){
     x=mod(hash(i*3.9+1)*(W+160)+t*(26+hash(i)*20)*(i%2?-1:1)-cam*0.015,W+160)-80;
