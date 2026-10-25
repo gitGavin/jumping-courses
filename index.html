@@ -790,7 +790,7 @@ function drawBoat(c,x,t){
 var cv=$('cv'),ctx=cv.getContext('2d'),DPR=Math.min(2,window.devicePixelRatio||1);
 cv.width=W*DPR;cv.height=H*DPR;
 var screen='menu',state='menu',ri=0,total=0,roundStartTotal=0,gt=0,last=0,selected=0;
-var P,hazards=[],fishes=[],parts=[],pops=[],boat=null,camX=0,hurtFlash=0,introT=0,tipT=0,rf=0,jumpBuf=0,resc=null,endT=0,ovShown=false;
+var P,hazards=[],fishes=[],parts=[],pops=[],boat=null,camX=0,hurtFlash=0,introT=0,tipT=0,rf=0,bonusN=0,jumpBuf=0,resc=null,endT=0,ovShown=false;
 var MAXHEARTS=5,cheat=false,cheatRun=false,tapTimes=[];
 var runs=[],runId=null,lastRunId=null,boardOpen=false,startIdx=0,runStart=0;
 var keys={left:false,right:false,jump:false};
@@ -832,7 +832,7 @@ function startRound(i,retry){
   ri=i;if(i===startIdx&&!retry){runId=null;runStart=startIdx;cheatRun=false}cheat=false;tapTimes=[];TAKEN=[];buildLevel(i);
   if(retry)total=roundStartTotal;else roundStartTotal=total;
   P={x:120,y:FLOAT,vy:0,air:false,hearts:MAXHEARTS,inv:0,face:1};
-  camX=0;rf=0;parts=[];pops=[];boat=null;resc=null;hurtFlash=0;introT=0;tipT=0;jumpBuf=0;endT=0;ovShown=false;
+  camX=0;rf=0;bonusN=0;parts=[];pops=[];boat=null;resc=null;hurtFlash=0;introT=0;tipT=0;jumpBuf=0;endT=0;ovShown=false;
   state='playing';hideOverlay();
 }
 
@@ -897,7 +897,7 @@ function finishRound(){
   state='roundend';endT=0;ovShown=false;SFX.win();confetti();
 }
 function showRoundEnd(){
-  var R=ROUNDS[ri],last=ROUNDS.length-1,msg='You caught '+rf+' of '+R.fish+' fish.'+(rf===R.fish?' Every single one!':'');
+  var R=ROUNDS[ri],last=ROUNDS.length-1,realF=rf-bonusN,msg='You caught '+realF+' of '+R.fish+' fish'+(bonusN?' plus '+bonusN+' bonus coffee and banana'+(bonusN>1?'s':''):'')+'.'+(realF===R.fish?' Every single fish!':'');
   syncRun();
   if(ri!==4&&ri!==last-1&&ri!==last){
     showOverlay('River '+(ri+1)+' done!',msg+' Next up: '+RIVERS[ri+1].name+'.','Next river',function(){startRound(ri+1,false)});
@@ -986,7 +986,7 @@ function update(dt){
       var ts=treatState(i,gt);
       if(ts.y>WATER-4||TAKEN[i]===ts.cyc)continue;
       var tx=camX+ts.x;
-      if(Math.abs(tx-P.x)<26&&Math.abs(ts.y-(P.y+4))<34){TAKEN[i]=ts.cyc;total++;syncRun();SFX.fish();sparkles(tx,ts.y);pop(tx,ts.y-20,'+1')}
+      if(Math.abs(tx-P.x)<26&&Math.abs(ts.y-(P.y+4))<34){TAKEN[i]=ts.cyc;rf++;bonusN++;total++;syncRun();SFX.fish();sparkles(tx,ts.y);pop(tx,ts.y-20,'+1')}
     }
   }
   /* particles */
@@ -1067,7 +1067,7 @@ function drawHUD(c,R,th){
   rrect(c,bx+bw+8,by-4,4,20,2);c.fillStyle='#fff';c.fill();
   tri(c,bx+bw+12,by-4,bx+bw+12,by+6,bx+bw+26,by+1,'#ff5a5f');
   drawFish(c,W-118,28,0,'#ff9f43',1.5);
-  outlineText(c,rf+'/'+R.fish,W-90,28,'28px '+FD,'#fff','left');
+  outlineText(c,rf+'/'+(R.fish+bonusN),W-90,28,'28px '+FD,'#fff','left');
   outlineText(c,'Total '+total,W-16,62,'20px '+FD,'#fff','right');
   if(introT<3){
     var a=introT<0.3?introT/0.3:introT>2.5?(3-introT)/0.5:1;
@@ -1307,11 +1307,10 @@ function buildRounds(){
     pv.style.background='linear-gradient(180deg,'+th.sky[0]+' 0%,'+th.sky[1]+' 46%,'+th.water[0]+' 46%,'+th.water[2]+' 100%)';
     var num=document.createElement('b');num.textContent=i+1;pv.appendChild(num);
     var nm=document.createElement('div');nm.className='nm';nm.textContent=th.name;
-    var haz=[];if(R.croc)haz.push('crocodiles');if(R.ray)haz.push('stingrays');if(R.shark)haz.push('sharks');
-    var sm=document.createElement('small');sm.textContent=(haz.length?haz.join(', '):'Easy swim')+' · '+R.fish+' fish'+(i===ROUNDS.length-1?' · bonus':'');
+    var sm=document.createElement('small');sm.textContent=R.pnw?'Driftwood, ferries, salmon, orcas · bonus':'';
     var pips=document.createElement('div');pips.className='pips';
     for(var q=0;q<ROUNDS.length;q++){var d=document.createElement('i');if(q<=i)d.className='on';pips.appendChild(d)}
-    b.appendChild(pv);b.appendChild(nm);b.appendChild(sm);b.appendChild(pips);g.appendChild(b);
+    b.appendChild(pv);b.appendChild(nm);if(sm.textContent)b.appendChild(sm);b.appendChild(pips);g.appendChild(b);
     b.addEventListener('click',function(){selectRound(i,true)});
   });
 }
