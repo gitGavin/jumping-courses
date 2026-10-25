@@ -384,7 +384,7 @@ var ROUNDS=[
  {L:7400,croc:8,ray:6,shark:5,fish:20,crocSpd:80,crocRng:80,sharkSpd:100,sharkRng:85,fishPer:1.95,fishJf:.36,current:35,tip:'Spooky swamp! The current pulls you back.'},
  {L:7800,croc:8,ray:7,shark:5,fish:20,crocSpd:84,crocRng:80,sharkSpd:102,sharkRng:85,fishPer:1.9,fishJf:.36,current:45,tip:'Galaxy river! Keep moving.'},
  {L:8200,croc:9,ray:7,shark:5,fish:22,crocSpd:88,crocRng:80,sharkSpd:105,sharkRng:85,fishPer:1.8,fishJf:.35,current:55,tip:'Digital rain! The current is strong.'},
- {L:10650,croc:11,ray:9,shark:5,orca:3,fish:27,crocSpd:100,crocRng:80,sharkSpd:116,sharkRng:85,fishPer:1.5,fishJf:.31,current:72,pnw:true,tip:'Seattle! Grab falling coffee and bananas for bonus points.'}
+ {L:10650,croc:11,ray:9,shark:5,orca:3,fish:27,crocSpd:100,crocRng:80,sharkSpd:116,sharkRng:85,fishPer:1.5,fishJf:.31,current:72,pnw:true,tip:'Seattle! Driftwood, ferries, salmon and leaping orcas.'}
 ];
 var TOTAL_FISH=ROUNDS.reduce(function(a,r){return a+r.fish},0);
 
@@ -626,6 +626,25 @@ function drawNeon(c,nx,k){
   tri(c,nx-3,oy+2,nx+3,oy+2,nx,oy+8,'#f0c15a');
   c.strokeStyle='#1f8a5b';c.lineWidth=1.4;c.beginPath();c.moveTo(nx-6,oy+13);c.lineTo(nx-6,oy+15);c.moveTo(nx,oy+11);c.lineTo(nx,oy+15);c.moveTo(nx+6,oy+13);c.lineTo(nx+6,oy+15);c.stroke();
 }
+function drawCoffeeSign(c,nx,k){
+  c.fillStyle='#7e92a6';c.fillRect(nx-40,WATER-84,80,84);
+  c.fillStyle='rgba(255,236,160,.5)';for(var r=0;r<4;r++)for(var q=0;q<5;q++)if(hash(k*4+r*2.7+q*1.9+3)>0.45)c.fillRect(nx-33+q*13,WATER-52+r*11,5,6);
+  c.fillStyle='#51657a';c.fillRect(nx-26,WATER-124,4,40);c.fillRect(nx+22,WATER-124,4,40);
+  rrect(c,nx-40,WATER-160,80,40,6);c.fillStyle='#fff3dd';c.fill();c.lineWidth=3;c.strokeStyle='#51657a';c.stroke();
+  var cx=nx-18,cy=WATER-140;
+  c.fillStyle='#ffffff';c.beginPath();c.moveTo(cx-9,cy-9);c.lineTo(cx+9,cy-9);c.lineTo(cx+6.5,cy+10);c.lineTo(cx-6.5,cy+10);c.closePath();c.fill();c.lineWidth=1.5;c.strokeStyle='#6b3d1e';c.stroke();
+  c.fillStyle='#b5703a';c.fillRect(cx-7.4,cy-2,14.8,7);c.fillStyle='#6b3d1e';c.fillRect(cx-10.5,cy-12,21,4);
+  c.strokeStyle='rgba(120,100,90,.7)';c.lineWidth=1.6;c.lineCap='round';
+  for(var s=0;s<2;s++){var sx=cx-3+s*6,wob=Math.sin(CLK*2+s*2)*2;c.beginPath();c.moveTo(sx,cy-15);c.quadraticCurveTo(sx+wob,cy-20,sx-wob,cy-25);c.stroke()}
+  c.save();c.textAlign='left';c.textBaseline='middle';c.font='11px '+FD;c.fillStyle='#6b3d1e';c.fillText('COFFEE',nx-5,cy);c.restore();
+}
+function drawBoxSign(c,bx){
+  c.fillStyle='#51657a';c.fillRect(bx-26,WATER-100,5,100);c.fillRect(bx+21,WATER-100,5,100);
+  rrect(c,bx-46,WATER-166,92,66,8);c.fillStyle='#e9f1f5';c.fill();c.lineWidth=3;c.strokeStyle='#51657a';c.stroke();
+  rrect(c,bx-30,WATER-156,60,44,5);c.fillStyle='#d9a566';c.fill();c.fillStyle='#e9c38f';c.fillRect(bx-7,WATER-156,14,44);
+  c.strokeStyle='#4a2f17';c.lineWidth=3;c.lineCap='round';c.beginPath();c.arc(bx,WATER-138,18,0.15*Math.PI,0.85*Math.PI);c.stroke();
+  circ(c,bx-12,WATER-144,2.6,'#4a2f17');circ(c,bx+12,WATER-144,2.6,'#4a2f17');
+}
 function drawSkyline(c,cam){
   CLK=SKYT;
   var par=0.2,period=1500,k0=Math.floor((cam*par-200)/period),k1=Math.floor((cam*par+W+200)/period),k,i,j2;
@@ -641,6 +660,9 @@ function drawSkyline(c,cam){
     }
     drawWheel(c,x-330,cam*0+0,k);
     drawNeon(c,x+400,k);
+    drawNeon(c,x-470,k+7);
+    drawCoffeeSign(c,x+580,k);
+    drawBoxSign(c,x+740);
     var bx=x+250;
     c.fillStyle='#51657a';c.fillRect(bx-26,WATER-104,5,104);c.fillRect(bx+21,WATER-104,5,104);
     rrect(c,bx-46,WATER-170,92,68,8);c.fillStyle='#ff9a1f';c.fill();c.lineWidth=3;c.strokeStyle='#51657a';c.stroke();
@@ -666,7 +688,7 @@ function drawMist(c){
   var g=c.createLinearGradient(0,WATER-80,0,WATER);g.addColorStop(0,'rgba(230,238,244,0)');g.addColorStop(1,'rgba(230,238,244,.5)');
   c.fillStyle=g;c.fillRect(0,WATER-80,W,80);
 }
-var NTREAT=6,TAKEN=[];
+var NTREAT=0,TAKEN=[];
 function treatState(i,t){
   var sp=(70+hash(i*4.1)*50)*0.8,cyc=WATER+60,v=hash(i*2.9)*cyc+t*sp;
   return {x:mod(hash(i*9.7)*W-t*10,W),y:mod(v,cyc)-40,a:Math.sin(t*1.6+i*2)*0.5+(i%2?0.4:-0.4),cyc:Math.floor(v/cyc)};

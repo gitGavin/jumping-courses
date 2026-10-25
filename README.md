@@ -17,7 +17,6 @@ It works on a computer, phone or tablet. On a phone, turn it sideways so the GO 
 - Catch the leaping fish for **1 point each**.
 - Jump over the obstacles. If one chomps you, a rescue boat carries you back, Mario-style. You have **5 hearts** per round. Lose them all and the round starts over.
 - Pick any of **20 animal swimmers**, then pick which of the **10 rivers** to start from. Round 10 is the bonus round.
-- In Emerald City (round 10), coffee cups and bananas fall with the rain. Touch one for a **bonus point**, counted just like a fish.
 - Music and sound can each be turned off from the buttons under the river. A scoreboard ranks your runs.
 - Secret: triple-tap the five hearts for unlimited lives in that round. Runs that use it are tagged "CHEATED" on the scoreboard.
 
@@ -32,7 +31,7 @@ It works on a computer, phone or tablet. On a phone, turn it sideways so the GO 
 7. Spooky Swamp (a current pulls you back)
 8. Cosmic River (galaxy)
 9. Digital Rain (Matrix-style)
-10. **Emerald City**, a Seattle bonus round: Mount Rainier is the tallest peak, with the lower snowy Olympic and North Cascade mountains behind it, plus the Space Needle, a rainforest of evergreens, a lit-up Ferris wheel on the waterfront, bald eagles, seagulls and passenger jets in the sky, and rain that brings coffee cups and bananas. The obstacles are driftwood, ferries, salmon (they swim diagonally and turn red as they rise to the surface) and leaping orcas.
+10. **Emerald City**, a Seattle bonus round: Mount Rainier is the tallest peak, with the lower snowy Olympic and North Cascade mountains behind it, plus the Space Needle, a rainforest of evergreens, a lit-up Ferris wheel on the waterfront, bald eagles, seagulls and passenger jets in the sky, and rainy streets with glowing owl badges, a coffee-cup sign, a banana billboard and a smiling delivery-box sign. The obstacles are driftwood, ferries, salmon (they swim diagonally and turn red as they rise to the surface) and leaping orcas.
 
 ## The story
 
