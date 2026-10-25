@@ -316,12 +316,36 @@ function drawSwimmer(c,d,x,y,r,o){
 }
 
 /* ---------- sound ---------- */
-var ac=null,muted=false;
+var ac=null,muted=false,silentEl=null,audioReady=false;
+/* Phones are picky: audio must be started by a touch, the context can end up 'interrupted' (not just 'suspended'),
+   and iPhones mute Web Audio when the ringer switch is on silent unless the page also plays a media element. */
+function makeSilentSrc(){
+  var n=800,b=new Uint8Array(44+n*2),dv=new DataView(b.buffer),i,w=function(o,s){for(var k=0;k<s.length;k++)dv.setUint8(o+k,s.charCodeAt(k))};
+  w(0,'RIFF');dv.setUint32(4,36+n*2,true);w(8,'WAVE');w(12,'fmt ');dv.setUint32(16,16,true);dv.setUint16(20,1,true);dv.setUint16(22,1,true);
+  dv.setUint32(24,8000,true);dv.setUint32(28,16000,true);dv.setUint16(32,2,true);dv.setUint16(34,16,true);w(36,'data');dv.setUint32(40,n*2,true);
+  var s='';for(i=0;i<b.length;i++)s+=String.fromCharCode(b[i]);
+  return 'data:audio/wav;base64,'+btoa(s);
+}
+function unlockAudio(){
+  try{
+    try{if(navigator.audioSession)navigator.audioSession.type='playback'}catch(e){}
+    if(!ac)ac=new (window.AudioContext||window.webkitAudioContext)();
+    if(ac.state!=='running')ac.resume();
+    if(!audioReady){
+      var sb=ac.createBuffer(1,1,22050),src=ac.createBufferSource();src.buffer=sb;src.connect(ac.destination);src.start(0);
+      audioReady=true;
+    }
+    if(!silentEl){
+      silentEl=document.createElement('audio');silentEl.src=makeSilentSrc();silentEl.loop=true;silentEl.setAttribute('playsinline','');silentEl.volume=0.01;
+    }
+    if(silentEl.paused){var pr=silentEl.play();if(pr&&pr.catch)pr.catch(function(){})}
+  }catch(e){}
+}
 function tone(f0,f1,dur,type,vol,delay){
   if(muted)return;
   try{
     if(!ac)ac=new (window.AudioContext||window.webkitAudioContext)();
-    if(ac.state==='suspended')ac.resume();
+    if(ac.state!=='running')ac.resume();
     var t0=ac.currentTime+(delay||0),o=ac.createOscillator(),g=ac.createGain();
     o.type=type||'sine';o.frequency.setValueAtTime(f0,t0);o.frequency.exponentialRampToValueAtTime(Math.max(30,f1),t0+dur);
     g.gain.setValueAtTime(vol||0.12,t0);g.gain.exponentialRampToValueAtTime(0.001,t0+dur);
@@ -1205,7 +1229,7 @@ function startMusic(){
   if(musicOff||MUSIC.on)return;
   try{
     if(!ac)ac=new (window.AudioContext||window.webkitAudioContext)();
-    if(ac.state==='suspended')ac.resume();
+    if(ac.state!=='running')ac.resume();
     if(!MUSIC.master){MUSIC.master=ac.createGain();MUSIC.master.gain.value=0.45;MUSIC.master.connect(ac.destination)}
     if(!MUSIC.noise){var nb=ac.createBuffer(1,Math.floor(ac.sampleRate*0.3),ac.sampleRate),d=nb.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1;MUSIC.noise=nb}
     MUSIC.on=true;MUSIC.next=ac.currentTime+0.1;MUSIC.step=0;
@@ -1213,7 +1237,8 @@ function startMusic(){
   }catch(e){MUSIC.on=false}
 }
 function stopMusic(){MUSIC.on=false;if(MUSIC.timer){clearInterval(MUSIC.timer);MUSIC.timer=null}}
-document.addEventListener('visibilitychange',function(){if(document.hidden)stopMusic();else if(screen==='game')startMusic()});
+document.addEventListener('visibilitychange',function(){if(document.hidden){stopMusic();try{if(silentEl)silentEl.pause()}catch(e){}}else{if(ac&&ac.state!=='running')ac.resume();if(screen==='game')startMusic()}});
+['touchend','pointerup','click','keydown'].forEach(function(ev){document.addEventListener(ev,unlockAudio,true)});
 
 /* ---------- scoreboard (real runs from this device only) ---------- */
 try{
