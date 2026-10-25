@@ -4,32 +4,22 @@ A swimming-and-jumping game **designed by Noah, age 6, of Seattle**, and built w
 
 ## Play it
 
-**Option 1: play from your computer or phone (works for everyone with repo access)**
+**Play now: https://gitgavin.github.io/jumping-courses/**
 
-1. In this repo on github.com, click `index.html`.
-2. Click the **Download raw file** button (the down-arrow icon at the top right of the file view).
-3. Open the downloaded `index.html` (double-click it). The game opens in your browser.
+It works on a computer, phone or tablet. On a phone, turn it sideways so the GO and JUMP buttons sit on the left and right of the river.
 
-**Option 2: play straight from a GitHub link (GitHub Pages)**
-
-1. In this repo, click **Settings**, then **Pages** in the left menu.
-2. Under **Build and deployment**, set **Source** to **Deploy from a branch**. Pick the `main` branch and the `/ (root)` folder, then click **Save**.
-3. Wait a minute or two, then open **https://gitgavin.github.io/jumping-courses/**. That link is the game, and you can share it with anyone.
-
-Note: GitHub Pages only works on a **public** repo unless your GitHub plan includes Pages for private repos. This repo's README mentions Noah's first name, age and city, so check that you're comfortable with that before making the repo public.
-
----
-
-Open `index.html` in any browser to play. It is a single file with no install, no account and no internet needed (the title font loads from Google Fonts when online and falls back to a plain rounded font when offline).
+**Play offline:** click `index.html` in this repo, click the **Download raw file** button (the down-arrow icon at the top right), then open the downloaded file in your browser. It is a single file with no install and no account. The title font loads from Google Fonts when you're online and falls back to a plain rounded font when you're not.
 
 ## How to play
 
 - **GO** (hold): swim forward. On a keyboard: right arrow or `D`.
 - **JUMP** (tap): leap. **Hold it longer to jump higher**, up to a limit. On a keyboard: `Space`, up arrow or `W`.
 - Catch the leaping fish for **1 point each**.
-- Jump over crocodiles, sharks and stingrays. If one chomps you, a rescue boat carries you back, Mario-style. You have **5 hearts** per round. Lose them all and the round starts over.
+- Jump over the obstacles. If one chomps you, a rescue boat carries you back, Mario-style. You have **5 hearts** per round. Lose them all and the round starts over.
 - Pick any of **20 animal swimmers**, then pick which of the **10 rivers** to start from. Round 10 is the bonus round.
+- In Emerald City (round 10), coffee cups and bananas fall with the rain. Touch one for a **bonus point**, counted just like a fish.
 - Music and sound can each be turned off from the buttons under the river. A scoreboard ranks your runs.
+- Secret: triple-tap the five hearts for unlimited lives in that round. Runs that use it are tagged "CHEATED" on the scoreboard.
 
 ## The 10 rivers
 
@@ -42,7 +32,7 @@ Open `index.html` in any browser to play. It is a single file with no install, n
 7. Spooky Swamp (a current pulls you back)
 8. Cosmic River (galaxy)
 9. Digital Rain (Matrix-style)
-10. Emerald City: a Seattle bonus round with Mount Rainier, the Space Needle, evergreens, a Ferris wheel, driftwood, ferries, salmon and leaping orcas
+10. **Emerald City**, a Seattle bonus round: Mount Rainier is the tallest peak, with the lower snowy Olympic and North Cascade mountains behind it, plus the Space Needle, a rainforest of evergreens, a lit-up Ferris wheel on the waterfront, and rain that brings coffee cups and bananas. The obstacles are driftwood, ferries, salmon (they turn red as they rise to the surface) and leaping orcas.
 
 ## The story
 
@@ -50,4 +40,4 @@ See [docs/how-it-was-built.md](docs/how-it-was-built.md) for how Noah's idea tur
 
 ## Tech
 
-One self-contained HTML file: an HTML canvas game (800x500 logical canvas), plain JavaScript, no libraries or image files. Every character, creature and background is drawn in code. The music is generated live with the Web Audio API. Scores are stored in the browser's `localStorage` on each device only.
+One self-contained HTML file: an HTML canvas game (800x500 logical canvas), plain JavaScript, no libraries or image files. Every character, creature and background is drawn in code. The music is generated live with the Web Audio API, with extra steps so sound works on phones (including iPhones on silent). Scores are stored in the browser's `localStorage` on each device only, so each device has its own scoreboard.

@@ -45,6 +45,10 @@ Each step below started as something Noah or his dad asked for.
 - Move the GO and JUMP buttons to the sides of the screen and make the river bigger when the phone or tablet is held sideways.
 - Fill out Seattle: a Ferris wheel on the waterfront, a banana billboard, a green-and-white owl badge, rain with falling coffee cups and bananas that give bonus points, and obstacles of driftwood, ferries, salmon (they turn red as they rise to the surface) and leaping orcas.
 
+- Make the Seattle round look bigger: Mount Rainier is the tallest peak, with the Olympic and North Cascade mountains behind it.
+- Make coffee and bananas count as fish, so the bonus points show up in the fish counter.
+- Fix missing sound on phones (iPhone silent switch and paused audio), and publish the game through GitHub so anyone can play from a link.
+
 ## Choices made along the way
 
 - **One file, no libraries.** Everything is drawn with code, so the game runs anywhere and is easy to share.
