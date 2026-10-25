@@ -2,6 +2,24 @@
 
 A swimming-and-jumping game **designed by Noah, age 6, of Seattle**, and built with Claude and a little help from his dad.
 
+## Play it
+
+**Option 1: play from your computer or phone (works for everyone with repo access)**
+
+1. In this repo on github.com, click `index.html`.
+2. Click the **Download raw file** button (the down-arrow icon at the top right of the file view).
+3. Open the downloaded `index.html` (double-click it). The game opens in your browser.
+
+**Option 2: play straight from a GitHub link (GitHub Pages)**
+
+1. In this repo, click **Settings**, then **Pages** in the left menu.
+2. Under **Build and deployment**, set **Source** to **Deploy from a branch**. Pick the `main` branch and the `/ (root)` folder, then click **Save**.
+3. Wait a minute or two, then open **https://gitgavin.github.io/jumping-courses/**. That link is the game, and you can share it with anyone.
+
+Note: GitHub Pages only works on a **public** repo unless your GitHub plan includes Pages for private repos. This repo's README mentions Noah's first name, age and city, so check that you're comfortable with that before making the repo public.
+
+---
+
 Open `index.html` in any browser to play. It is a single file with no install, no account and no internet needed (the title font loads from Google Fonts when online and falls back to a plain rounded font when offline).
 
 ## How to play
